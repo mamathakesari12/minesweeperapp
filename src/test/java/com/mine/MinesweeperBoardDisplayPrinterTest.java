@@ -25,7 +25,7 @@ public class MinesweeperBoardDisplayPrinterTest {
     }
 
     @Test
-    void testEmptyUnrevealedBoardPrint() {
+    void testEmptyUndisplayedBoardPrint() {
         MinesweeperBoard minesweeperBoard = new MinesweeperBoard(2, 0);
 
         BoardDisplayPrinter printer = new BoardDisplayPrinter();
@@ -44,14 +44,11 @@ public class MinesweeperBoardDisplayPrinterTest {
         // Build deterministic board: one mine at (0,0), reveal all
         MinesweeperBoard minesweeperBoard = new MinesweeperBoard(2, 0);
         minesweeperBoard.getGrid()[0][0].setMine(true);
-        // manually set adjacency after placing mine
-        // using reflection or making method package-private
-        // For simplicity: assume adjacent recalculated
+
         minesweeperBoard.getGrid()[0][1].setAdjacentMines(1);
         minesweeperBoard.getGrid()[1][0].setAdjacentMines(1);
         minesweeperBoard.getGrid()[1][1].setAdjacentMines(1);
 
-        // Reveal all cells
         for(int i=0;i<2;i++)
             for(int j=0;j<2;j++)
                 minesweeperBoard.getCell(i,j).setMine(true);
@@ -70,11 +67,11 @@ public class MinesweeperBoardDisplayPrinterTest {
     @Test
     void testMixedRevealedAndHiddenCells() {
         MinesweeperBoard minesweeperBoard = new MinesweeperBoard(3, 0);
-        // set some mines and adjacency
+
         minesweeperBoard.getGrid()[0][1].setMine(true);
         minesweeperBoard.getGrid()[1][1].setAdjacentMines(1);
         minesweeperBoard.getGrid()[2][2].setAdjacentMines(0);
-        // reveal only (1,1), hide others
+
         minesweeperBoard.getCell(1,1).setMine(true);
 
         new BoardDisplayPrinter().print(minesweeperBoard);

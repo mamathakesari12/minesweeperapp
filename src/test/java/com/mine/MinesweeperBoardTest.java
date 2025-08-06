@@ -16,7 +16,7 @@ class MinesweeperBoardTest {
     }
 
     @Test
-    void testInitialization_noMinesUntilPlacement() {
+    void testInitialization_noMines() {
         TestMinesweeperBoard b = new TestMinesweeperBoard(5, 3);
         // after constructor, mines are placed automatically
         int actualMines = 0;

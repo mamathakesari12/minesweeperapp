@@ -27,9 +27,9 @@ public class MinesweeperGameServiceTest {
         System.setIn(System.in);
     }
 
+
     @Test
-    void testGameStartWithValidInput() {
-        // Setup a 2x2 board with 1 mine at (0, 0)
+    void testGameStartValidInput() {
         MinesweeperBoard minesweeperBoard = new MinesweeperBoard(2, 1);
         minesweeperBoard.getCell(0, 0).setMine(true);
         minesweeperBoard.getCell(0, 1).setAdjacentMines(1);
@@ -39,10 +39,8 @@ public class MinesweeperGameServiceTest {
         DisplayPrinter displayPrinter = new BoardDisplayPrinter();
         MinesweeperGameService minesweeperGameService = new MinesweeperGameService(minesweeperBoard, displayPrinter);
 
-        // Start the game
         minesweeperGameService.start();
 
-        // Capture and assert the output
         String output = outContent.toString();
         assertTrue(output.contains("Select a square to reveal"));
         assertFalse(output.contains("Congratulations!, GameOve it!"));
